@@ -12,7 +12,7 @@ import {Observable} from 'rxjs';
 export class TablaPaisesComponent implements OnInit {
 
   miBanderas:any[] | undefined;
-  misPaises:Observable<any>| undefined;
+  misPaises!: Observable<any>;
   bandera:string=""
   constructor(private servBandera:BanderasService){
   

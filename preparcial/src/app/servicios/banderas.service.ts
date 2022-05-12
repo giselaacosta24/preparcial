@@ -15,7 +15,13 @@ export class BanderasService {
    return this.http.get(this.api +'all');
  }
 
+ 
  pais(nombrePais:string):Observable<any> {
+
+  return this.http.get(this.api +'name/'+nombrePais)
+ }
+
+ banderas(nombrePais:string):Observable<any> {
 
   return this.http.get(this.api +'name/'+nombrePais)
  }

@@ -102,7 +102,7 @@ rutafoto:string ="ruta";
         positionClass: 'toast-bottom-right'
       });
       this.loading = false;
-      this.router.navigate(['/tabla-peliculas']);
+      this.router.navigate(['/busqueda']);
     }).catch(error => {
       console.log(error);
       this.loading = false;
@@ -128,7 +128,7 @@ rutafoto:string ="ruta";
       this.toastr.info('La pelicula fue modificada con exito', 'Pelicula modificada', {
         positionClass: 'toast-bottom-right'
       })
-      this.router.navigate(['/tabla-peliculas']);
+      this.router.navigate(['/busqueda']);
     })
   }
 

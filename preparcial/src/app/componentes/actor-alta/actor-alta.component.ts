@@ -32,29 +32,14 @@ export class ActorAltaComponent implements OnInit {
       nombre: ['', Validators.required]
     
     })
-    // this.id = this.aRoute.snapshot.paramMap.get('id');
-    // console.log(this.id);
-
+   
   }
 
   ngOnInit() {
  
   }
 
-  // agregarEditarPelicula() {
-  //   this.submitted = true;
 
-  //   if (this.createPelicula.invalid) {
-  //     return;
-  //   }
-
-  //   if (this.id === null) {
-  //     this.agregarPelicula();
-  //   } else {
-  //     this.editarPelicula(this.id);
-  //   }
-
-  // }
 
   agregarActor() {
     

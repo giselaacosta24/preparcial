@@ -1,14 +1,16 @@
-<div *ngIf="miBanderas ">
+ <div *ngIf="miBanderas ">
     <img [src]="bandera" >
 </div>
-
-<!-- <div *ngFor="let bandera of miBanderas">
+<!-- 
+ <div *ngFor="let bandera of miBanderas">
 
     {{bandera.name.common}}
-</div> -->
+</div>  -->
 
 
 <div *ngFor="let bandera of misPaises | async ">
 
    <input type="button"  [value]="bandera.name.common"  (click)="buscarPais(bandera.name.common)">
-</div>
+   <img [src]="bandera.flags.png" width="20px" height="20px">
+
+</div> 
