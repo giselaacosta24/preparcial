@@ -1,0 +1,35 @@
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <span class="h3">Listado de Peliculas</span>
+            <button class="btn btn-dark btn-lg float-right" routerLink="/peliculas/alta">Agregar</button>
+            <h5 style="margin-top: 30px;" *ngIf="peliculas.length == 0">No hay datos para mostrar</h5>
+            <table *ngIf="peliculas.length > 0" class="table table-striped mt-5">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Tipo(Categoria)</th>
+                    <th>Cantidad de publico</th>
+                    <th>Fecha de estreno</th>
+                    <th>Foto</th>
+                    <th></th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let pelicula of peliculas">
+                    <td>{{ pelicula.nombre }}</td>
+                    <td>{{ pelicula.tipodecategoria }}</td>
+                    <td>{{ pelicula.cantidadpublico }}</td>
+                    <td>{{ pelicula.fechadeestreno }}</td>
+                    <td> <img src="{{pelicula.foto}}" alt="" width="200" height="200"></td>
+
+                    
+                    <td><button type="button" class="btn btn-info btn-circle"   (click)="mostrarDetalles(pelicula)"><i class="fa fa-check"></i>
+                    </button></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+.container {
+    max-width: 960px;
+  }
+  
+  .border-top { border-top: 1px solid #e5e5e5; }
+  .border-bottom { border-bottom: 1px solid #e5e5e5; }
+  .border-top-gray { border-top-color: #adb5bd; }
+  
+  .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+  
+  .lh-condensed { line-height: 1.25; }
+  
+
+  /* #inputFile {
+    display: none;
+}
+
+.labelInputFile {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 100%;
+    background-color: lightblue;
+    position: absolute;
+    padding: 1rem;
+    box-shadow: 0 0 10px -1px gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.labelInputFile img {
+    width: 3rem;
+    height: 3rem;
+}
+
+.labelInputFile:active {
+    transform: scale(0.9);
+} */

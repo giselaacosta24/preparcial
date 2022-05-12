@@ -1,0 +1,23 @@
+<!-- <div class="col-md-4">
+    <h2>Solo mostrar</h2>
+    <p>Aqui van los controles necesarios, segun la entidad y funcionalidad requerida</p>
+    <p><a class="btn btn-secondary" href="#" role="button">Limpiar</a></p>
+  </div> -->
+
+
+  <div *ngIf="!unaPelicula">
+    <p> seleccione un Pelicula  y se mostrará su detalle</p>
+  </div>
+  
+  
+  <div *ngIf="unaPelicula">
+   
+  
+    <div class="card" style="width:200px">
+        <img class="card-img-top" src={{unaPelicula.foto}} alt="Card image" style="width: 50px;">
+        <div class="card-body">
+          <h4 class="card-title">{{unaPelicula.nombre}}</h4>
+          <p class="card-text">Detalle de pelicula {{unaPelicula.nombre}} ,{{unaPelicula.tipodecategoria}}</p> 
+        </div>
+      </div>
+  </div>
