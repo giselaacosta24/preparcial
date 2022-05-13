@@ -6,8 +6,9 @@ import { Observable } from 'rxjs';
 })
 export class BanderasService {
 
-  api: string ="https://restcountries.com/v3.1/";
-
+  // api: string ="https://restcountries.com/v3.1/";
+api:string = "https://restcountries.com/v2/alpha?codes=arg,usa,gb,aus,lon,ury,co,deu,ve";
+  //api:string = "https://restcountries.com/v3.1/subregion/europe/";
   constructor(private http:HttpClient) { }
 
  
