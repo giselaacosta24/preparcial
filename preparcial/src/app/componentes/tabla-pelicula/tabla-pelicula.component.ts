@@ -16,9 +16,8 @@ import { Component, OnInit ,Input,Output, EventEmitter} from '@angular/core';
 
   export class TablaPeliculaComponent implements OnInit {
     peliculas: any[] = [];
-    pelicula:Pelicula | undefined;
-    @Input()
-  listadoPeliculas: Pelicula[] = [];
+     @Input()
+   listadoPeliculas: Pelicula[] = [];
     @Output() peliculaSeleccionada: EventEmitter<any>= new EventEmitter<any>();
      
    

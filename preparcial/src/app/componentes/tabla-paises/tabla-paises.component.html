@@ -1,24 +1,17 @@
 <h4 class="d-flex justify-content-between align-items-center mb-3">
   <span class="text-muted">Paises</span>
-  <!-- <span class="badge badge-secondary badge-pill">3</span> -->
 </h4>
-<div *ngFor="let bandera of misPaises | async">
-  <ul class="list-group ">
-    <li   class="list-group-item d-flex justify-content-between lh-condensed" >
-      <label>{{bandera.name}} <img [src]="bandera.flags.png"  width="30px" height="30px"></label>
-     
 
-  <!-- <input type="button"  [value]="bandera.name.common"  (click)="buscarPais(bandera.name.common)"> -->
-</li>
-</ul>
+<div *ngFor="let pais of misPaises | async">
+  <label for="enum_answer_{{pais.name}}">
+    <input id="enum_answer_{{pais.name}}"    (click)="mostrarDetalles(pais)"
+     [value]='pais.name' type="radio" name="enums" [(ngModel)]="pais.name" required>  </label>
+<img [src]="pais.flags.png"  width="30px" height="30px"> 
+
+
 </div>
+<!-- {{radioSelected}} -->
+<!-- <button (click)='radioFun()'>Checked value in console</button> -->
 
 
-<!-- <form class="card p-2">
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="Promo code">
-    <div class="input-group-append">
-      <button type="submit" class="btn btn-secondary">Redeem</button>
-    </div>
-  </div>
-</form> -->
+

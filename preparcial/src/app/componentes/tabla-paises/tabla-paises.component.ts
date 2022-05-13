@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BanderasService } from 'src/app/servicios/banderas.service';
 import {Observable} from 'rxjs';
+import { Pais } from 'src/app/clases/pais';
 
 
 @Component({
@@ -13,23 +14,45 @@ export class TablaPaisesComponent implements OnInit {
 
   miBanderas:any[] | undefined;
   misPaises!: Observable<any>;
-  bandera:string=""
+ // bandera:string="";
+  name = 'Angular';
+  bandera!: any | undefined;
+  radioSelected: any;
+
+
+  @Output() paisSeleccionado: EventEmitter<any>= new EventEmitter<any>();
+
+
+
+  
+
   constructor(private servBandera:BanderasService){
   
   
   }
   
   ngOnInit(): void {
-    // this.servBandera.todos().subscribe(banderas=>this.miBanderas=banderas);
     this.servBandera.todos().subscribe(banderas=>this.miBanderas=banderas);
   this.misPaises=this.servBandera.todos();
   console.log(this.misPaises);
   }
-  
+ 
+  // mostrarDetalles() {
+  //   console.log('radio');
+
+  //   console.log(this.radioSelected);
+  // }
+ 
   buscarPais(nombre:string){
   
     this.servBandera.pais(nombre).subscribe(t=>
     this.bandera=t[0].flags.png)
   }
+
+   mostrarDetalles(pais:Pais)
+   {
+    console.info("mostrar detalles:",pais);
+     this.paisSeleccionado.emit(pais);
+   }
 
 }

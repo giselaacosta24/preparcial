@@ -6,10 +6,29 @@
 
   <div class="row">
     <div class="col-md-4 order-md-2 mb-4">
-      <app-tabla-paises></app-tabla-paises>
-    
+       <!-- <app-tabla-paises></app-tabla-paises>  -->
+       <app-tabla-paises [listadoPaises]="ListadoPaisesPrincipal"
+       (paisSeleccionada)="tomarPaisParaDetalles($event)" ></app-tabla-paises>   
+      <div *ngIf="!unPais">
+        <p> seleccione pais</p>
+      </div>
+      
+      
+      <div *ngIf="unPais">
+       
+      
+        <div class="card" style="width:200px">            
+          
+          <h4 class="card-title">{{unPais.nombre}}</h4>
+
+            <!-- <img class="card-img-top" src={{unaPelicula.foto}} alt="Card image" style="width: 50px;">
+            <div class="card-body">
+              <p class="card-text">Detalle de pelicula {{unaPelicula.nombre}} ,{{unaPelicula.tipodecategoria}}</p> 
+            </div> -->
+          </div>
+      </div>
     </div>
-    <div class="col-md-8 order-md-1">
+    <!-- <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Informacion de Actor</h4>
       <form  [formGroup]="createActor"  (ngSubmit)="agregarActor()" class="needs-validation" novalidate>
         <div class="row">
@@ -52,7 +71,6 @@
             </div>
           </div>
       
-        
         </div>
         <hr class="mb-4">
        
@@ -63,7 +81,7 @@
         <button class="btn btn-primary btn-lg btn-block" type="submit">Guardar Informacion</button>
       </form>
     </div>
-  </div>
+  </div> -->
 
   <footer class="my-5 pt-5 text-muted text-center text-small">
     <p class="mb-1">&copy; 2022 Gisela Acosta</p>

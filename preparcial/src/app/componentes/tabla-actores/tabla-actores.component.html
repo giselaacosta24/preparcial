@@ -1,0 +1,35 @@
+<div class="card-body">
+    <span class="h3">Listado de Actores</span>
+    <button class="btn btn-dark btn-lg float-right" routerLink="/actor/alta">Agregar</button>
+    <!-- <h5 style="margin-top: 30px;" *ngIf="Actores.length == 0">No hay datos para mostrar</h5> -->
+    <table *ngIf="actores.length > 0" class="table table-striped mt-5">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Pelicula</th>
+            <th>Pais</th>
+            <!-- <th>Foto</th> -->
+            <th></th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let actor of actores">
+            <td>{{ actor.nombre }}</td>
+            <td>{{ actor.nombre }}</td>
+            <td>{{ actor.nombre }}</td>
+            <!-- <td>{{ pelicula.fechadeestreno }}</td> -->
+            <td> 
+                <!-- <img src="{{pelicula.foto}}" alt="" width="100" height="100"> -->
+            </td>
+
+            
+            <td>
+                <!-- <button type="button" class="btn btn-info"  >Info<i class="fa fa-check"></i>
+            </button> -->
+        </td>
+          </tr>
+        </tbody>
+      </table>
+</div>

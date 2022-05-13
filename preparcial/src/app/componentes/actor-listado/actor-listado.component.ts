@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Actor } from 'src/app/clases/actor';
+import { Pais } from 'src/app/clases/pais';
 import { ActorService } from 'src/app/servicios/actor.service';
 
 @Component({
@@ -8,37 +9,23 @@ import { ActorService } from 'src/app/servicios/actor.service';
   styleUrls: ['./actor-listado.component.css']
 })
 export class ActorListadoComponent implements OnInit {
+  // @Output()
+  // paisParaMostrar: Pais = new Pais;
 
-  actores: any[] = [];
-    actor:Actor | undefined;
-    @Input()
-  listadoactores: Actor[] = [];
-    @Output() actorSeleccionada: EventEmitter<any>= new EventEmitter<any>();
-     
-   
-    constructor(private actorService: ActorService) {
-    }
+  // ListadoPaisPrincipal: Pais[] = [];
+ @Input()
+  unPais: Pais | undefined;
+  @Output()
+  paisParaMostrar: Pais = new Pais;
+  constructor() { } 
   
-    ngOnInit(): void {
-      this.getActores()
-    }
-  
-    getActores() {
-      this.actorService.getActores().subscribe(data => {
-        this.actores = [];
-        data.forEach((element: any) => {
-          this.actores.push({
-            id: element.payload.doc.id,
-            ...element.payload.doc.data()
-          })
-        });
-        console.log(this.actores);
-      });
-    }
-  
- 
+  ngOnInit(): void {
+  }
   
 
-   
-  
+
+  tomarPaisParaDetalles(nuevoPais: Pais)
+  {
+    this.paisParaMostrar=nuevoPais;   
+  }
 }

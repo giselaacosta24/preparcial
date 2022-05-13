@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 // Moudulos
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,7 @@ import { DetallePeliculaComponent } from './componentes/detalle-pelicula/detalle
 import { HttpClientModule } from '@angular/common/http';
 import { BanderasComponent } from './componentes/banderas/banderas.component';
 import { TablaPaisesComponent } from './componentes/tabla-paises/tabla-paises.component';
+import { TablaActoresComponent } from './componentes/tabla-actores/tabla-actores.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { TablaPaisesComponent } from './componentes/tabla-paises/tabla-paises.co
     PeliculaListadoComponent,
     DetallePeliculaComponent,
     BanderasComponent,
-    TablaPaisesComponent
+    TablaPaisesComponent,
+    TablaActoresComponent
     
     
 
@@ -50,8 +52,10 @@ import { TablaPaisesComponent } from './componentes/tabla-paises/tabla-paises.co
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     HttpClientModule
+    
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

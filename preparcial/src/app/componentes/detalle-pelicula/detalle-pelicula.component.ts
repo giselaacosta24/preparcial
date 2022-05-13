@@ -8,16 +8,12 @@ import { Pelicula } from 'src/app/clases/pelicula';
 })
 export class DetallePeliculaComponent implements OnInit {
  
-  @Output() peliculaSeleccionada: EventEmitter<any>= new EventEmitter<any>(); 
   @Input()
   unaPelicula: Pelicula | undefined;
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.unaPelicula);
   }
-  mostrarDetalles(parametroPelicula: any)
-  {
-  	console.log(" detalle");
-    this.peliculaSeleccionada.emit(parametroPelicula);
-  }
+
 }
