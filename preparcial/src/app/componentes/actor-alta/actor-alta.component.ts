@@ -29,7 +29,11 @@ export class ActorAltaComponent implements OnInit {
     private toastr: ToastrService,
     private aRoute: ActivatedRoute) {
     this.createActor = this.fb.group({
-      nombre: ['', Validators.required]
+      nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      pelicula: ['', Validators.required]
+
+
     
     })
    
@@ -45,7 +49,10 @@ export class ActorAltaComponent implements OnInit {
     
   
     const actor: any = {
-      nombre: this.createActor.value.nombre
+      nombre: this.createActor.value.nombre,
+      apellido: this.createActor.value.apellido,
+      pelicula: this.createActor.value.pelicula
+
     }
     this.loading = true;
     this.actorService.agregarActor(actor).then(() => {
@@ -53,7 +60,7 @@ export class ActorAltaComponent implements OnInit {
         positionClass: 'toast-bottom-right'
       });
       this.loading = false;
-      this.router.navigate(['/actor/alta']);
+      this.router.navigate(['/busqueda']);
     }).catch(error => {
       console.log(error);
       this.loading = false;

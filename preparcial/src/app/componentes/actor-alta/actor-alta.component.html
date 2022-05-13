@@ -11,18 +11,18 @@
     </div>
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Informacion de Actor</h4>
-      <form class="needs-validation" novalidate>
+      <form  [formGroup]="createActor"  (ngSubmit)="agregarActor()" class="needs-validation" novalidate>
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">Nombre</label>
-            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+            <input type="text" class="form-control" id="firstName" formControlName="nombre" placeholder="" value="" required>
             <div class="invalid-feedback">
               Valid first name is required.
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="lastName">Apellido</label>
-            <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+            <input type="text" class="form-control" id="lastName" formControlName="apellido" placeholder="" value="" required>
             <div class="invalid-feedback">
               Valid last name is required.
             </div>
@@ -34,8 +34,8 @@
      
 
         <div class="mb-3">
-          <label for="address">Direccion</label>
-          <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+          <label for="address">Pelicula</label>
+          <input type="text" class="form-control" formControlName="pelicula" id="address" placeholder="Ingrese Pelicula" required>
           <div class="invalid-feedback">
             Please enter your shipping address.
           </div>
