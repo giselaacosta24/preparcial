@@ -13,19 +13,19 @@ export class ActorListadoComponent implements OnInit {
   // paisParaMostrar: Pais = new Pais;
 
   // ListadoPaisPrincipal: Pais[] = [];
- @Input()
-  unPais: Pais | undefined;
-  @Output()
-  paisParaMostrar: Pais = new Pais;
-  constructor() { } 
+//  @Input()
+  // unPais: Pais | undefined;
+  // @Output()
+  // paisParaMostrar: Pais = new Pais;
+  // constructor() { } 
   
-  ngOnInit(): void {
+   ngOnInit(): void {
   }
   
 
 
-  tomarPaisParaDetalles(nuevoPais: Pais)
-  {
-    this.paisParaMostrar=nuevoPais;   
-  }
+  // tomarPaisParaDetalles(nuevoPais: Pais)
+  // {
+  //   this.paisParaMostrar=nuevoPais;   
+  // }
 }

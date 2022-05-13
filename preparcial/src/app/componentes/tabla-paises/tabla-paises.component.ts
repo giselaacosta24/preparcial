@@ -12,7 +12,28 @@ import { Pais } from 'src/app/clases/pais';
 })
 export class TablaPaisesComponent implements OnInit {
 
-  miBanderas:any[] | undefined;
+
+  listaPaises:any=[]
+  @Output() paisSeleccionado = new EventEmitter<any>();
+  constructor(private api:BanderasService) { 
+
+    this.api.obtenerPaises() // retorna Observable  .subscribe
+    .subscribe((data:any)=>{ 
+      this.listaPaises=data
+      
+    })
+   
+  }
+  ngOnInit(): void {
+  }
+
+
+  seleccionPais(paisSeleccionado:any){
+    this.paisSeleccionado.emit(paisSeleccionado);
+  }
+}
+
+/*   miBanderas:any[] | undefined;
   misPaises!: Observable<any>;
  // bandera:string="";
   name = 'Angular';
@@ -37,12 +58,7 @@ export class TablaPaisesComponent implements OnInit {
   console.log(this.misPaises);
   }
  
-  // mostrarDetalles() {
-  //   console.log('radio');
 
-  //   console.log(this.radioSelected);
-  // }
- 
   buscarPais(nombre:string){
   
     this.servBandera.pais(nombre).subscribe(t=>
@@ -53,6 +69,6 @@ export class TablaPaisesComponent implements OnInit {
    {
     console.info("mostrar detalles:",pais);
      this.paisSeleccionado.emit(pais);
-   }
-
+   } 
 }
+*/

@@ -1,4 +1,4 @@
-<h4 class="d-flex justify-content-between align-items-center mb-3">
+<!-- <h4 class="d-flex justify-content-between align-items-center mb-3">
   <span class="text-muted">Paises</span>
 </h4>
 
@@ -10,8 +10,25 @@
 
 
 </div>
-<!-- {{radioSelected}} -->
-<!-- <button (click)='radioFun()'>Checked value in console</button> -->
 
 
+ -->
 
+ <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Pais</th>
+      <th scope="col">Bandera</th>
+      <th scope="col">Seleccione el correspondiente:</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let pais of listaPaises ">
+    <tr>
+      <td>{{pais.name}}</td>
+      <td><img [src]="pais.flag" alt="" width="20px" height="20px"></td>
+      <td> 
+        <input id="enum_answer_{{pais.name}}"    (click)="seleccionPais(pais)"
+        [value]='pais.name' type="radio" name="enums" [(ngModel)]="pais.name" required> </td>
+    </tr>
+  </tbody>
+</table>

@@ -3,7 +3,6 @@
     <div class="py-5 text-center">
       <img class="d-block mx-auto mb-4" src="../../../assets/altapelicula.jpg" alt="" width="200" height="200">
       <h2>Alta de pelicula</h2>
-      <!-- <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p> -->
     </div>
 
     <div class="row">
@@ -71,12 +70,8 @@
           <div class="row">
             <div class="col-md-3 mb-3">
               <label for="cc-expiration">Foto</label>
-            <!--   <input type="text" class="form-control" id="cc-expiration" formControlName="foto"  placeholder="" required>
-              <div class="invalid-feedback"> 
-                Foto
-              </div> -->
+       
               <input type="file" accept=".png, .jpg,.jpeg" formControlName="foto" (change)="cargarImagen($event)"  multiple id="inputFile"> 
-              <!-- <label>{{urlImagen}}</label> -->
                <img src="{{imagenes[0]}}" alt="imagen subida" width="200" height="200">
              </div> 
           </div>
@@ -95,41 +90,3 @@
 
 
 
-<!-- 
-<div class="container pt-4">
-  <div class="row">
-      <div class="col-lg-6 offset-lg-3">
-          <div class="card text-center">
-              <div class="card-body">
-                  <h3>{{ titulo }}
-                      <div *ngIf="loading" class="spinner-border float-right" role="status">
-                          <span class="sr-only">Loading...</span>
-                        </div>
-                  </h3>
-                  <span *ngIf="submitted && createPelicula.invalid" class="badge badge-danger">TODOS LOS CAMPOS SON OBLIGATORIOS</span>
-                  <form class="mt-4" [formGroup]="createPelicula" (ngSubmit)="agregarEditarPelicula()">
-                      <div class="row">
-                          <div class="col">
-                              <input type="text" class="form-control form-control-lg" formControlName="nombre"
-                                  placeholder="Nombre">
-                          </div>
-                          <div class="col">
-                              <input type="text" class="form-control form-control-lg" formControlName="apellido"
-                                  placeholder="Apellido">
-                          </div>
-                      </div>
-                      <input type="text" class="form-control form-control-lg mt-3" formControlName="documento"
-                          placeholder="Documento">
-                      <input type="number" class="form-control form-control-lg mt-3" formControlName="salario"
-                          placeholder="Salario">
-                      <div class="mt-3">
-                          <button type="text" class="btn btn-secondary btn-lg mr-3"
-                              routerLink="/tabla-pelicula">Volver</button>
-                          <button type="submit" class="btn btn-dark btn-lg">Agregar</button>
-                      </div>
-                  </form>
-              </div>
-          </div>
-      </div>
-  </div>
-</div> -->

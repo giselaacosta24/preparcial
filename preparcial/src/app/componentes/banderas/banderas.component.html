@@ -10,7 +10,7 @@
 
 <div *ngFor="let bandera of misPaises | async ">
 
-   <input type="button"  [value]="bandera.name.common"  (click)="buscarPais(bandera.name.common)">
+   <!-- <input type="button"  [value]="bandera.name.common"  (click)="buscarPais(bandera.name.common)"> -->
    <img [src]="bandera.flags.png" width="20px" height="20px">
 
 </div> 

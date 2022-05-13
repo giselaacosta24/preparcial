@@ -1,90 +1,66 @@
-<div class="container">
-  <div class="py-5 text-center">
-    <img class="d-block mx-auto mb-4" src="../../../assets/altapelicula.jpg" alt="" width="72" height="72">
-    <h2>Alta de Actores</h2>
-  </div>
 
+
+<div class="container">  
   <div class="row">
     <div class="col-md-4 order-md-2 mb-4">
-       <!-- <app-tabla-paises></app-tabla-paises>  -->
-       <app-tabla-paises [listadoPaises]="ListadoPaisesPrincipal"
-       (paisSeleccionada)="tomarPaisParaDetalles($event)" ></app-tabla-paises>   
-      <div *ngIf="!unPais">
-        <p> seleccione pais</p>
-      </div>
-      
-      
-      <div *ngIf="unPais">
-       
-      
-        <div class="card" style="width:200px">            
-          
-          <h4 class="card-title">{{unPais.nombre}}</h4>
-
-            <!-- <img class="card-img-top" src={{unaPelicula.foto}} alt="Card image" style="width: 50px;">
-            <div class="card-body">
-              <p class="card-text">Detalle de pelicula {{unaPelicula.nombre}} ,{{unaPelicula.tipodecategoria}}</p> 
-            </div> -->
-          </div>
-      </div>
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted">Selecciona País</span>
+      </h4>
+       <app-tabla-paises (paisSeleccionado)="actualizarPais($event)"  ></app-tabla-paises> 
     </div>
-    <!-- <div class="col-md-8 order-md-1">
-      <h4 class="mb-3">Informacion de Actor</h4>
-      <form  [formGroup]="createActor"  (ngSubmit)="agregarActor()" class="needs-validation" novalidate>
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="firstName">Nombre</label>
-            <input type="text" class="form-control" id="firstName" formControlName="nombre" placeholder="" value="" required>
-            <div class="invalid-feedback">
-              Valid first name is required.
-            </div>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="lastName">Apellido</label>
-            <input type="text" class="form-control" id="lastName" formControlName="apellido" placeholder="" value="" required>
-            <div class="invalid-feedback">
-              Valid last name is required.
-            </div>
-          </div>
-        </div>
 
+    
+    <div class="col-md-8 order-md-1">
+      <img class="d-block mx-auto mb-4" src="../../../assets/altapelicula.jpg" alt="" width="72" height="72">
+
+      <h4 class="mb-3">Alta de Actores</h4>
+        <div class="row">
+          <form  [formGroup]="createActor"  (ngSubmit)="agregarActor()" class="needs-validation" novalidate>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="firstName">Nombre</label>
+                <input type="text" class="form-control" id="firstName" formControlName="nombre" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="lastName">Apellido</label>
+                <input type="text" class="form-control" id="lastName" formControlName="apellido" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Valid last name is required.
+                </div>
+              </div>
+            </div>
+    
+
+            <div class="mb-3">
+              <label for="address">Pelicula</label>
+              <input type="text" class="form-control" formControlName="pelicula" id="address" placeholder="Ingrese Pelicula" required>
+              <div class="invalid-feedback">
+                Please enter your shipping address.
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5 mb-3">
+                 <label for="country">Pais:</label>
+                 <input type="text" class="form-control"  value= {{newActor.pais}} formControlName="pais" id="pais" placeholder="Seleccione pais" required>
+
+        
+              </div>
+          
+            </div>
+    
+      
+              <button class="btn btn-primary btn-lg btn-block" type="submit">Guardar Informacion</button>
+
+          </form>
    
-
-     
-
-        <div class="mb-3">
-          <label for="address">Pelicula</label>
-          <input type="text" class="form-control" formControlName="pelicula" id="address" placeholder="Ingrese Pelicula" required>
-          <div class="invalid-feedback">
-            Please enter your shipping address.
-          </div>
         </div>
 
-       
 
-        <div class="row">
-          <div class="col-md-5 mb-3">
-            <label for="country">Pais</label>
-          
-            <div class="invalid-feedback">
-              Please select a valid country.
-            </div>
-          </div>
-      
-        </div>
-        <hr class="mb-4">
-       
-        <hr class="mb-4">
+      </div>
+  </div>
 
-  
-        <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Guardar Informacion</button>
-      </form>
-    </div>
-  </div> -->
 
-  <footer class="my-5 pt-5 text-muted text-center text-small">
-    <p class="mb-1">&copy; 2022 Gisela Acosta</p>
-  
-  </footer>
 </div>

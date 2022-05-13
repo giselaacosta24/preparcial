@@ -3,10 +3,8 @@
   <main role="main">
     <app-tabla-pelicula [listadoPeliculas]="ListadoPeliculasPrincipal"
     (peliculaSeleccionada)="tomarPeliculaParaDetalles($event)" ></app-tabla-pelicula>   
-  <!-- <app-tabla-pelicula></app-tabla-pelicula> -->
-  <!-- <app-banderas></app-banderas> -->
+
     <div class="container">
-      <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-4">
           <h2>Para borrar</h2>
@@ -15,7 +13,6 @@
         </div>
          <app-detalle-pelicula [unaPelicula]="peliculaParaMostrar"></app-detalle-pelicula>
 
-          <!-- <app-detalle-pelicula></app-detalle-pelicula> -->
         <div class="col-md-4">
           <h2>Modificar</h2>
           <p>Aqui van los controles necesarios, segun entidad y funcionalidad requerida</p>
@@ -25,7 +22,7 @@
   
       <hr>
   
-    </div> <!-- /container -->
+    </div> 
   
   </main>
   

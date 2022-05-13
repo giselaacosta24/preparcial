@@ -5,10 +5,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BanderasService {
-
-  // api: string ="https://restcountries.com/v3.1/";
+/* 
 api:string = "https://restcountries.com/v2/alpha?codes=arg,usa,gb,aus,lon,ury,co,deu,ve";
-  //api:string = "https://restcountries.com/v3.1/subregion/europe/";
   constructor(private http:HttpClient) { }
 
  
@@ -25,5 +23,15 @@ api:string = "https://restcountries.com/v2/alpha?codes=arg,usa,gb,aus,lon,ury,co
  banderas(nombrePais:string):Observable<any> {
 
   return this.http.get(this.api +'name/'+nombrePais)
+ } */
+
+api:string = 'https://restcountries.com/v2/alpha?codes=arg,usa,gb,aus,lon,ury,co,deu,ve'
+
+ constructor(private http:HttpClient) { }
+ 
+ 
+ obtenerPaises=()=>{
+   return this.http.get(this.api)
  }
 }
+
