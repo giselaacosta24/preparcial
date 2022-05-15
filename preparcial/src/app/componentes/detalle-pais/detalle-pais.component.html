@@ -1,0 +1,14 @@
+<div *ngIf="!unActor || unActor.id ===0">
+    <p> Seleccione un actor </p>
+    <p> y se mostrara su informacion personal  </p>
+
+</div>
+<div *ngIf="unActor && unActor.id !==0">
+  <div class="card" style="width:200px">
+    <div class="card-body">
+      <h4 class="card-title">{{unActor.pais}}</h4>
+
+      <a href="#" class="btn btn-danger">Modificar</a>
+    </div>
+  </div>
+</div>

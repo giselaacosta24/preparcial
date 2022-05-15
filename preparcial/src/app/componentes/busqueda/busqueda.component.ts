@@ -8,7 +8,7 @@ import { Pelicula } from 'src/app/clases/pelicula';
 })
 export class BusquedaComponent implements OnInit {
   @Output()
-  peliculaParaMostrar: Pelicula = new Pelicula;
+  unaPelicula: Pelicula = new Pelicula;
 
   ListadoPeliculasPrincipal: Pelicula[] = [];
 
@@ -19,7 +19,7 @@ export class BusquedaComponent implements OnInit {
   }
   tomarPeliculaParaDetalles(NuevoPeli: Pelicula)
   {
-    this.peliculaParaMostrar=NuevoPeli;   
+    this.unaPelicula=NuevoPeli;   
   }
   mostrarPelicula(parametroPelicula:Pelicula)
   {

@@ -9,23 +9,25 @@ import { ActorService } from 'src/app/servicios/actor.service';
   styleUrls: ['./actor-listado.component.css']
 })
 export class ActorListadoComponent implements OnInit {
-  // @Output()
-  // paisParaMostrar: Pais = new Pais;
 
-  // ListadoPaisPrincipal: Pais[] = [];
-//  @Input()
-  // unPais: Pais | undefined;
-  // @Output()
-  // paisParaMostrar: Pais = new Pais;
-  // constructor() { } 
-  
-   ngOnInit(): void {
+  @Output()
+  unActor: Actor = new Actor;
+
+  ListadoActorPrincipal: Actor[] = [];
+
+
+  constructor() { }
+
+  ngOnInit(): void {
   }
-  
+  tomarActorParaDetalles(NuevoActor: Actor)
+  {
+    this.unActor=NuevoActor;   
+  }
+  mostrarPelicula(parametroActor:Actor)
+  {
+      console.info("pelicula",parametroActor);
+      this.ListadoActorPrincipal.push(parametroActor);
+  }
 
-
-  // tomarPaisParaDetalles(nuevoPais: Pais)
-  // {
-  //   this.paisParaMostrar=nuevoPais;   
-  // }
 }

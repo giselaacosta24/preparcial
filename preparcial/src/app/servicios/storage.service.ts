@@ -26,15 +26,15 @@ export class StorageService {
 
   }
 
-  async getImageUrl() {
-    const storage = firebase.storage();
+//   async getImageUrl() {
+//     const storage = firebase.storage();
 
-storage.ref('fgf_1652306754755.jpeg').getDownloadURL()
-  .then((url) => {
-    console.log('estoy en get');
-    console.log(url);
+// storage.ref('fgf_1652306754755.jpeg').getDownloadURL()
+//   .then((url) => {
+//     console.log('estoy en get');
+//     console.log(url);
 
-  })
-  }
+//   })
+//   }
   
 }

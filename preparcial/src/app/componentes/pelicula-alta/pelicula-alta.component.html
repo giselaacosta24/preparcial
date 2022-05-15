@@ -8,13 +8,13 @@
     <div class="row">
       <div class="col-md-4 order-md-2 mb-4">
 
-        <app-tabla-actores></app-tabla-actores>  
+        <app-tabla-actores (actorSeleccionado)="actualizarActor($event)"  ></app-tabla-actores>  
       </div>
       <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Datos de Pelicula</h4>
         <span *ngIf="submitted && createPelicula.invalid" class="badge badge-danger">TODOS LOS CAMPOS SON OBLIGATORIOS</span>
 
-        <form  [formGroup]="createPelicula"  (ngSubmit)="agregarEditarPelicula()" class="needs-validation" novalidate>
+        <form  [formGroup]="createPelicula"  (ngSubmit)="agregarPelicula()" class="needs-validation" novalidate>
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="firstName">Nombre de Pelicula</label>
@@ -66,19 +66,40 @@
          
           </div>
 
-          
+             <div *ngIf="loading == true" class="spinner-border float-right" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
           <div class="row">
             <div class="col-md-3 mb-3">
               <label for="cc-expiration">Foto</label>
        
               <input type="file" accept=".png, .jpg,.jpeg" formControlName="foto" (change)="cargarImagen($event)"  multiple id="inputFile"> 
-               <img src="{{imagenes[0]}}" alt="imagen subida" width="200" height="200">
-             </div> 
-          </div>
+
+
+          </div>       
+              </div>              
+              
+              <img src="../../../assets/imagenes/subir.png" alt="" width="40" height="40" alt="upload file" >
+                
+
+                   
           <hr class="mb-4">
+
+          <div class="row">
+            <div class="col-md-5 mb-3">
+               <label for="country">Actor:</label>
+               <input type="text" class="form-control"  value= {{newActor.nombre}} formControlName="nombreactor" id="pais" placeholder="Seleccione actor" required>
+
+      
+            </div>
+        
+          </div>
           <button type="text" class="btn btn-secondary btn-lg mr-3"
           routerLink="/busqueda">Volver</button>
-          <button type="submit" class="btn btn-dark btn-lg">Agregar Pelicula</button>
+          <button type="submit" class="btn btn-dark btn-lg" *ngIf="loading == false">Agregar Pelicula</button>
+          <button  class="btn btn-primary" type="button" *ngIf="loading == true"  disabled>
+            Cargando foto...
+          </button>
         </form>
       </div>    
 

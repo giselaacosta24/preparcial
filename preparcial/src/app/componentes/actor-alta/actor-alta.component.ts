@@ -85,7 +85,7 @@ export class ActorAltaComponent implements OnInit {
     this.newActor.pais=pais.name;
       console.log(this.newActor.pais);
 
-      return this.newActor.pais;
+  
 
   }
 

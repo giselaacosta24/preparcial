@@ -8,6 +8,8 @@ import { Categorias } from 'src/app/clases/categorias';
 import { StorageService } from 'src/app/servicios/storage.service';
 import { Observable, retry } from 'rxjs';
 import { url } from 'inspector';
+import { Pelicula } from 'src/app/clases/pelicula';
+import { Actor } from 'src/app/clases/actor';
 
 
 @Component({
@@ -23,6 +25,11 @@ export class PeliculaAltaComponent implements OnInit {
   titulo = 'Agregar Pelicula';
   tipodefault!: string;
 rutafoto:string ="ruta";
+nuevaPelicula:Pelicula;
+progress: number = 0;
+newActor:Actor;
+
+fileStatus = { status: '', requestType: '', percent: 0 };
 
   selectedOption: any;
   categoriasLista = [
@@ -41,17 +48,24 @@ rutafoto:string ="ruta";
     private toastr: ToastrService,
     private aRoute: ActivatedRoute,
     private storageService: StorageService) {
+      this.newActor=new Actor();
+      this.nuevaPelicula=new Pelicula()
+
     this.createPelicula = this.fb.group({
       nombre: ['', Validators.required],
       tipodecategoria: ['', Validators.required],
       cantidadpublico: ['', Validators.required],
       fechadeestreno: ['', Validators.required],
-      foto: ['', Validators.required]
+      foto: ['', Validators.required],
+      nombreactor: ['', Validators.required]
+
     })
     this.id = this.aRoute.snapshot.paramMap.get('id');
     console.log(this.id);
 
   }
+
+
 
   ngOnInit() {
     this.esEditar();
@@ -59,7 +73,10 @@ rutafoto:string ="ruta";
       { data: 'Comedia', name: 'tipo' },
       { data: 'Ciencia Ficcion', name: 'tipo' },
       { data: 'Accion', name: 'tipo' },
- 
+      { data: 'Drama', name: 'tipo' },
+      { data: 'Comedia Romantica', name: 'tipo' },
+      { data: 'Terror', name: 'tipo' },
+
     ];
   }
 
@@ -67,20 +84,23 @@ rutafoto:string ="ruta";
     this.submitted = true;
 
     if (this.createPelicula.invalid) {
+      console.log( 'aca:',this.createPelicula);
+
+
       return;
     }
 
     if (this.id === null) {
       this.agregarPelicula();
-    } else {
-      this.editarPelicula(this.id);
-    }
+      console.log(this.createPelicula );
+// +    }
 
+    }
   }
 
   agregarPelicula() {
-    
-      this.rutafoto=localStorage.getItem("urlfoto")!;
+          console.log( 'actor:',this.newActor.nombre);
+
   
   console.log( this.rutafoto);
     const pelicula: any = {
@@ -90,24 +110,26 @@ rutafoto:string ="ruta";
       fechadeestreno: this.createPelicula.value.fechadeestreno,
       
      // foto: this.createPelicula.value.foto,
-      foto:this.rutafoto,
+      foto: this.nuevaPelicula.foto,
 
-      fechaCreacion: new Date(),
-      fechaActualizacion: new Date()
+      nombreactor:this.newActor.nombre
+
+      // fechaCreacion: new Date(),
+      // fechaActualizacion: new Date()
     }
-    localStorage.removeItem("urlfoto");
-    this.loading = true;
+    // this.loading = true;
     this.peliculaService.agregarPelicula(pelicula).then(() => {
       this.toastr.success('La pelicula fue registrada con exito!', 'Pelicula Registrada', {
         positionClass: 'toast-bottom-right'
       });
-      this.loading = false;
+      // this.loading = false;
       this.router.navigate(['/busqueda']);
     }).catch(error => {
       console.log(error);
       this.loading = false;
     })
   }
+
 
   editarPelicula(id: string) {
 
@@ -117,11 +139,12 @@ rutafoto:string ="ruta";
       cantidadpublico: this.createPelicula.value.cantidadpublico,
       fechadeestreno: this.createPelicula.value.fechadeestreno,
       foto: this.createPelicula.value.foto,
-      
+      nombreactor: this.newActor.nombre,
+
       fechaActualizacion: new Date()
     }
 
-    this.loading = true;
+    // this.loading = true;
 
     this.peliculaService.actualizarPelicula(id, pelicula).then(() => {
       this.loading = false;
@@ -136,15 +159,17 @@ rutafoto:string ="ruta";
   esEditar() {
     this.titulo = 'Editar Pelicula'
     if (this.id !== null) {
-      this.loading = true;
+      // this.loading = true;
       this.peliculaService.getPelicula(this.id).subscribe(data => {
-        this.loading = false;
+        // this.loading = false;
         this.createPelicula.setValue({
           nombre: data.payload.data()['nombre'],
           tipodecategoria: data.payload.data()['tipodecategoria'],
           cantidadpublico: data.payload.data()['cantidadpublico'],
           fechadeestreno: data.payload.data()['fechadeestreno'],
           foto: data.payload.data()['foto'],
+          nombreactor: data.payload.data()['nombreactor'],
+
         })
       })
     }
@@ -153,6 +178,9 @@ rutafoto:string ="ruta";
   imagenes: any[] = [];
 
   cargarImagen(event: any) {
+
+    this.loading = true;
+
  let urlImagen: null = null;
 
     const pelicula: any = {
@@ -176,15 +204,28 @@ rutafoto:string ="ruta";
              name: "peliculas",
              imgProfile: urlImagen
            }
-           console.log(urlImagen);
-           if(urlImagen !== null)
-           {           localStorage.setItem("urlfoto", urlImagen);
+if(urlImagen !== null)
+{
+           this.nuevaPelicula.foto=urlImagen;
+        
+
+           console.log(this.loading = false);
+       
+
+      
 }
 
         });
       }
     }
    
+
+
+}
+
+actualizarActor(actor:any){
+  this.newActor=actor;
+    console.log(this.newActor);
 
 
 }

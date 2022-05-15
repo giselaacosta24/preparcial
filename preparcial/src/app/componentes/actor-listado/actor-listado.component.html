@@ -1,2 +1,35 @@
 
      <!-- <app-actor-alta [unPais]="paisParaMostrar"></app-actor-alta>  -->
+
+     <app-navbar></app-navbar>
+     <main role="main">
+       <!-- <app-tabla-actores (actorSeleccionado)="actualizarActor($event)"  ></app-tabla-actores>    -->
+       <app-tabla-actores [listadoActores]="ListadoActorPrincipal"
+    (actorSeleccionado)="tomarActorParaDetalles($event)" ></app-tabla-actores>   
+       <div class="container">
+         <div class="row">
+           <div class="col-md-4">
+            <app-tabla-actor-pelicula  [unActor]="unActor"></app-tabla-actor-pelicula>
+           </div>
+
+            <!-- <app-detalle-pelicula [unaPelicula]="unaPelicula"></app-detalle-pelicula> -->
+   
+           <div class="col-md-4">
+            <app-detalle-pais [unActor]="unActor"></app-detalle-pais>
+          </div>
+           <div class="col-md-4">
+
+                           <app-detalle-actor [unActor]="unActor"></app-detalle-actor>
+                          </div>
+
+         </div>
+
+         <hr>
+     
+       </div> 
+     
+     </main>
+     
+     <footer class="container">
+       <p>&copy; Company 2017-2018</p>
+     </footer>

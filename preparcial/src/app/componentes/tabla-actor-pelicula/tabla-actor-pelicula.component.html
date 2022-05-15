@@ -1,0 +1,49 @@
+<div *ngIf="!unActor || unActor.id ===0">
+    <p> Seleccione un actor </p>
+    <p> y se mostrara su informacion personal  </p>
+
+</div>
+<div *ngIf="unActor && unActor.id !==0">
+  <div class="card" style="width:200px">
+   <!--  <div class="card-body">
+      <h4 class="card-title">{{unActor.pelicula}}</h4>-->
+<table class="table table-striped mt-5">
+    <thead>
+      <tr>
+        <th>Peliculas</th>
+   
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+
+ 
+          <td>{{unActor.pelicula}}</td>
+       
+   
+      </tr>
+    </tbody>
+  </table>
+    <!-- </div>  -->
+  </div>
+</div>
+
+<!-- <table *ngIf="actores.length > 0" class="table table-striped mt-5">
+    <thead>
+      <tr>
+        <th>Peliculas</th>
+   
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let actor of actores">
+
+ 
+          <td>unActor.pelicula</td>
+       
+   
+      </tr>
+    </tbody>
+  </table> -->

@@ -10,11 +10,11 @@ import { ActorService } from 'src/app/servicios/actor.service';
 export class TablaActoresComponent implements OnInit {
 
   actores: any[] = [];
-  actor:Actor | undefined;
+  unActor:Actor | undefined;
   @Input()
 listadoactores: Actor[] = [];
 
-  @Output() actorSeleccionada: EventEmitter<any>= new EventEmitter<any>();
+  @Output() actorSeleccionado: EventEmitter<any>= new EventEmitter<any>();
    
  
   constructor(private actorService: ActorService) {
@@ -37,7 +37,14 @@ listadoactores: Actor[] = [];
     });
   }
 
+  // seleccionActor(actorSeleccionado:any){
+  //   this.actorSeleccionado.emit(actorSeleccionado);
+  // }
 
-
+  mostrarDetalles(unActor:Actor)
+  {
+    console.info("mostrar detalles",unActor);
+    this.actorSeleccionado.emit(unActor);
+  }
 
 }
