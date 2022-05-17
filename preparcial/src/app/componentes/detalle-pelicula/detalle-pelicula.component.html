@@ -1,11 +1,5 @@
 
-<!-- 
-  <div *ngIf="unaPelicula.id" === 0>
-    <div class="card" style="width:200px">
-    <p> seleccione un Pelicula  y se mostrará su detalle</p>
-  </div> 
 
-  </div> -->
   <div *ngIf="!unaPelicula || unaPelicula.id ===0">
     <p> Seleccione una pelicula </p>
     <p> y se mostrara su detalle  </p>
@@ -25,17 +19,3 @@
   </div>
 </div>
 
-<!--   
-  <div *ngIf="unaPelicula">
-   
-  
-    <div class="card" style="width:200px">
-      <div *ngIf="unaPelicula.foto">
-
-        <img class="card-img-top" src={{unaPelicula.foto}} alt="Card image" style="width: 50px;">
-        <div class="card-body">
-          <h4 class="card-title">{{unaPelicula.nombre}}</h4>
-          <p class="card-text">Detalle de pelicula {{unaPelicula.nombre}} ,{{unaPelicula.tipodecategoria}}</p> 
-        </div> 
-      </div>
-  </div> -->

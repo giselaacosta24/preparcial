@@ -1,8 +1,8 @@
 <div class="card-body">
-    <span class="h3">Listado de Actores</span>
-    <p>Seleccione el actor que participo en la pelicula:</p>
-    <button class="btn btn-dark btn-lg float-right" routerLink="/actor/alta">Agregar</button>
-    <!-- <h5 style="margin-top: 30px;" *ngIf="Actores.length == 0">No hay datos para mostrar</h5> -->
+    <span class="h3">Tabla de Actores</span>
+    <p>Seleccione el actor o los actores  que participaron en la pelicula(opcional)</p>
+<!--     <button class="btn btn-dark btn-lg float-right" routerLink="/actor/alta">Agregar</button>
+ -->    <!-- <h5 style="margin-top: 30px;" *ngIf="Actores.length == 0">No hay datos para mostrar</h5> -->
     <table *ngIf="actores.length > 0" class="table table-striped mt-5">
         <thead>
           <tr>
@@ -18,19 +18,16 @@
           <tr *ngFor="let actor of actores">
             <td>{{ actor.nombre }}</td>
             <td>{{ actor.apellido }}</td>
-            <!-- <td> 
-                <input id="enum_answer_{{ actor.nombre}}"
-              [value]='actor.nombre' type="radio" name="enums"  (click)="seleccionActor(actor)" [(ngModel)]=" actor.nombre" required>        
-            
-            
-            </td> -->
+          
+<td>   
 
-            
-              <td><button type="button" class="btn btn-info"   (click)="mostrarDetalles(actor)">Info<i class="fa fa-check"></i>
-              </button></td>
-                <!-- <button type="button" class="btn btn-info"  >Info<i class="fa fa-check"></i>
-            </button> -->
-       
+    <label>
+      <input type="checkbox" [value]="actor.id" (change)="onCheckboxChange($event)" />
+      {{actor.nombre}}
+    </label>
+
+</td>
+     
           </tr>
         </tbody>
       </table>

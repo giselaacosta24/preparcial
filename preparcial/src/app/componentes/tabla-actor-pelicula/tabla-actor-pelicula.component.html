@@ -1,49 +1,30 @@
-<div *ngIf="!unActor || unActor.id ===0">
-    <p> Seleccione un actor </p>
-    <p> y se mostrara su informacion personal  </p>
+<div class="card-body">
+  <span class="h3">Tabla de Actores</span>
+  <p>Seleccione el actor que participo en la pelicula:</p>
+  <button class="btn btn-dark btn-lg float-right" routerLink="/actor/alta">Agregar</button>
+  <!-- <h5 style="margin-top: 30px;" *ngIf="Actores.length == 0">No hay datos para mostrar</h5> -->
+  <table *ngIf="actores.length > 0" class="table table-striped mt-5">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Seleccione</th>
+          <!-- <th>Foto</th> -->
+          <th></th>
 
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let actor of actores">
+          <td>{{ actor.nombre }}</td>
+          <td>{{ actor.apellido }}</td>
+        
+
+          
+          <td><button type="button" class="btn btn-info"   (click)="mostrarDetalles(actor)">Info<i class="fa fa-check"></i>
+            </button></td> 
+         
+        </tr>
+      </tbody>
+    </table>
 </div>
-<div *ngIf="unActor && unActor.id !==0">
-  <div class="card" style="width:200px">
-   <!--  <div class="card-body">
-      <h4 class="card-title">{{unActor.pelicula}}</h4>-->
-<table class="table table-striped mt-5">
-    <thead>
-      <tr>
-        <th>Peliculas</th>
-   
-
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-
- 
-          <td>{{unActor.pelicula}}</td>
-       
-   
-      </tr>
-    </tbody>
-  </table>
-    <!-- </div>  -->
-  </div>
-</div>
-
-<!-- <table *ngIf="actores.length > 0" class="table table-striped mt-5">
-    <thead>
-      <tr>
-        <th>Peliculas</th>
-   
-
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let actor of actores">
-
- 
-          <td>unActor.pelicula</td>
-       
-   
-      </tr>
-    </tbody>
-  </table> -->

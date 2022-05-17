@@ -1,2 +1,16 @@
-<app-tabla-pelicula [listadoPeliculas]="ListadoPeliculasPrincipal"
-(peliculaSeleccionada)="tomarPeliculaParaDetalles($event)" ></app-tabla-pelicula>  
+<div class="card-body">
+    <p>Listado de Peliculas en las que participo</p>   
+
+ <ul >    
+     <div *ngFor="let pelicula of peliculas ">
+     <div *ngIf="unActor && unActor.id !=='' && pelicula.actores.includes(unActor.id) ">
+
+<li>
+      <span >{{pelicula.nombre}}</span>
+  </li>  </div>
+
+    </div>
+  </ul> 
+
+ 
+</div>

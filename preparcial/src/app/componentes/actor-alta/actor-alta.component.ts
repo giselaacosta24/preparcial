@@ -15,17 +15,22 @@ import { Actor } from 'src/app/clases/actor';
   templateUrl: './actor-alta.component.html',
   styleUrls: ['./actor-alta.component.css']
 })
-export class ActorAltaComponent implements OnInit {
+export class ActorAltaComponent {
   newActor:Actor;
-  createActor: FormGroup;
-  submitted = false;
-   loading = false;
+  // createActor: FormGroup;
+/*   submitted = false;
+ */   loading = false;
    titulo = 'Agregar Actor';
-
+   error='';
+   createActor!: FormGroup;
   pais:any={
     name:'',
     flag:'',
   };
+  @Input()
+  unActor: Actor | undefined;
+  @Output() actorSeleccionado: EventEmitter<any>= new EventEmitter<any>();
+
 
    constructor(private fb: FormBuilder,
 
@@ -36,34 +41,51 @@ export class ActorAltaComponent implements OnInit {
     {
      this.newActor=new Actor()
 
+
     this.createActor = this.fb.group({
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
       pelicula: ['', Validators.required],
-      pais: ['', Validators.required]
+      direccion: ['', Validators.required],
+      edad: ['', Validators.required]
 
 
 
-   
-   })
-  
+
+    });
   } 
 
+
+
+ isValidField(field: string): string {
+  const validatedField = this.createActor.get(field);
+   return (!validatedField?.valid && validatedField?.touched)
+   ? 'is-invalid' : validatedField?.touched ? 'is-valid' : '';
+}
   ngOnInit(): void {
+console.log(this.unActor);
+console.log(this.actorSeleccionado);
   }
 
-
+ 
 
 
   agregarActor() {
     console.log(this.newActor);
 
   console.log(this.createActor.value.pais);
+  if (this.createActor.valid) {
+    this.error='';
+
+
     const actor: any = {
       nombre: this.createActor.value.nombre,
       apellido: this.createActor.value.apellido,
       pelicula: this.createActor.value.pelicula,
-      pais:this.newActor.pais
+      pais:this.newActor.pais,
+      direccion: this.createActor.value.direccion,
+      edad: this.createActor.value.edad
+
 
     }
    this.loading = true;
@@ -72,22 +94,50 @@ export class ActorAltaComponent implements OnInit {
         positionClass: 'toast-bottom-right'
      });
      this.loading = false;
-      this.router.navigate(['/busqueda']);
+      this.router.navigate(['/actor/listado']);
     }).catch(error => {
       console.log(error);
       this.loading = false;     })
   } 
-  mostrarActor(){
-    alert(JSON.stringify(this.newActor))
+  else{
+   this.error='error';
   }
+}
+
+editarActor(id: string) {
+
+  const actor: any = {
+    nombre: this.createActor.value.nombre,
+    apellido: this.createActor.value.apellido,
+    pelicula: this.createActor.value.pelicula,
+    pais:this.newActor.pais,
+    direccion: this.createActor.value.direccion,
+    edad: this.createActor.value.edad
+  }
+
+
+  this.actorService.actualizarActor(id, actor).then(() => {
+    this.loading = false;
+    this.toastr.info('El actor fue modificado con exito', 'Actor modificado', {
+      positionClass: 'toast-bottom-right'
+    })
+    this.router.navigate(['/actor/listado']);
+  })
+}
 
   actualizarPais(pais:any){
     this.newActor.pais=pais.name;
-      console.log(this.newActor.pais);
 
   
 
   }
+  mostrarDetalles(actor:Actor)
+  {
+    this.actorSeleccionado.emit(actor);    
+    console.info("mostrar detalles",actor);
+
+  } 
+
 
 
 

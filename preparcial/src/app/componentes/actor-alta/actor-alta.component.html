@@ -1,66 +1,79 @@
 
 
-<div class="container">  
+<div class="container">
   <div class="row">
-    <div class="col-md-4 order-md-2 mb-4">
-      <h4 class="d-flex justify-content-between align-items-center mb-3">
-        <span class="text-muted">Selecciona País</span>
-      </h4>
-       <app-tabla-paises (paisSeleccionado)="actualizarPais($event)"  ></app-tabla-paises> 
-    </div>
-
-    
-    <div class="col-md-8 order-md-1">
-      <img class="d-block mx-auto mb-4" src="../../../assets/altapelicula.jpg" alt="" width="72" height="72">
-
-      <h4 class="mb-3">Alta de Actores</h4>
+     <div class="col-md-4 order-md-2 mb-4">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+           <span class="text-muted">Selecciona País</span>
+        </h4>
+        <app-tabla-paises (paisSeleccionado)="actualizarPais($event)"  ></app-tabla-paises>
+     </div>
+     <div class="col-md-8 order-md-1">
+        <img class="d-block mx-auto mb-4" src="../../../assets/altapelicula.jpg" alt="" width="72" height="72">
+        <h4 class="mb-3">Alta de Actores</h4>
         <div class="row">
-          <form  [formGroup]="createActor"  (ngSubmit)="agregarActor()" class="needs-validation" novalidate>
-            <div class="row">
+           <form  [formGroup]="createActor"  (ngSubmit)="agregarActor()" class="needs-validation" novalidate>
+           <div class="row">
               <div class="col-md-6 mb-3">
-                <label for="firstName">Nombre</label>
-                <input type="text" class="form-control" id="firstName" formControlName="nombre" placeholder="" value="" required>
-                <div class="invalid-feedback">
-                  Valid first name is required.
-                </div>
+                 <label for="firstName">Nombre</label>
+                 <input type="text" class="form-control" id="nombre" placeholder="Ingrese nombre" formControlName="nombre" [class]="isValidField('nombre')">
+                 <div class="invalid-feedback">
+                    <span *ngIf="createActor.get('nombre')?.errors?.['required']">
+                    El nombre del actor no puede quedar vacio.
+                    </span>
+                 </div>
               </div>
               <div class="col-md-6 mb-3">
-                <label for="lastName">Apellido</label>
-                <input type="text" class="form-control" id="lastName" formControlName="apellido" placeholder="" value="" required>
-                <div class="invalid-feedback">
-                  Valid last name is required.
-                </div>
+                 <label for="lastName">Apellido</label>
+                 <input type="text" class="form-control" id="lastName" formControlName="apellido" placeholder="" value="" [class]="isValidField('apellido')" >
+                 <div class="invalid-feedback">
+                    <span *ngIf="createActor.get('apellido')?.errors?.['required']">
+                    El apellido del actor no puede quedar vacio.
+                    </span>
+                 </div>
               </div>
-            </div>
-    
-
-            <div class="mb-3">
-              <label for="address">Pelicula</label>
-              <input type="text" class="form-control" formControlName="pelicula" id="address" placeholder="Ingrese Pelicula" required>
+              <div class="col-md-6 mb-3">
+                <label for="lastName">Direccion</label>
+                <input type="text" class="form-control" id="lastName" formControlName="direccion" placeholder="" value="" [class]="isValidField('direccion')" >
+                <div class="invalid-feedback">
+                   <span *ngIf="createActor.get('direccion')?.errors?.['required']">
+                  La direccion del actor no puede quedar vacia.
+                   </span>
+                </div>
+             </div>
+             <div class="col-md-6 mb-3">
+              <label for="lastName">Edad</label>
+              <input type="number" class="form-control" id="lastName" formControlName="edad" placeholder="" value="" [class]="isValidField('edad')" >
               <div class="invalid-feedback">
-                Please enter your shipping address.
+                 <span *ngIf="createActor.get('edad')?.errors?.['required']">
+                 La edad  del actor no puede quedar vacia.
+                 </span>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-md-5 mb-3">
+           </div>
+           </div>
+           <div class="mb-3">
+              <label for="address">Pelicula</label>
+              <input type="text" class="form-control" formControlName="pelicula" id="address" placeholder="Ingrese Pelicula" [class]="isValidField('pelicula')" >
+              <div class="invalid-feedback">
+                 La pelicula no puede quedar vacia.
+              </div>
+           </div>
+           <div class="row">
+              <div class="col-md-5 mb-3"> 
                  <label for="country">Pais:</label>
-                 <input type="text" class="form-control"  value= {{newActor.pais}} formControlName="pais" id="pais" placeholder="Seleccione pais" required>
-
-        
+                 <input type="text"  [disabled]="true" value= {{newActor.pais}} id="pais" placeholder="Seleccione pais"
+                    class="form-control">
+                 <span *ngIf="newActor.pais === ''">
+                 El pais del actor no puede quedar vacio.
+                 </span>
               </div>
-          
-            </div>
-    
-      
-              <button class="btn btn-primary btn-lg btn-block" type="submit">Guardar Informacion</button>
-
-          </form>
-   
+           </div>
+           <span *ngIf="error !== ''">
+           Complete todos los campos
+           </span>
+           <button class="btn btn-primary btn-lg btn-block" type="submit">Guardar Informacion</button>
+           </form>
         </div>
-
-
-      </div>
+     </div>
   </div>
-
-
 </div>

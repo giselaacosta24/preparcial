@@ -13,9 +13,7 @@ export class DetallePeliculaComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('imput');
 
-    console.log(this.unaPelicula?.id===0);
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup,Validators } from '@angular/forms';
 import { Actor } from 'src/app/clases/actor';
 import { Pais } from 'src/app/clases/pais';
 import { ActorService } from 'src/app/servicios/actor.service';
@@ -14,10 +15,16 @@ export class TablaActoresComponent implements OnInit {
   @Input()
 listadoactores: Actor[] = [];
 
-  @Output() actorSeleccionado: EventEmitter<any>= new EventEmitter<any>();
-   
+   @Output() actorSeleccionado: EventEmitter<any>= new EventEmitter<any>();
+  @Output() actoresSeleccionados: EventEmitter<any>= new EventEmitter<any>();
+
+  form: FormGroup;
+
  
-  constructor(private actorService: ActorService) {
+  constructor(private actorService: ActorService,private fb: FormBuilder) {
+    this.form = this.fb.group({
+      checkArray: this.fb.array([], [Validators.required]),
+    });
   }
 
   ngOnInit(): void {
@@ -37,14 +44,30 @@ listadoactores: Actor[] = [];
     });
   }
 
-  // seleccionActor(actorSeleccionado:any){
-  //   this.actorSeleccionado.emit(actorSeleccionado);
-  // }
 
-  mostrarDetalles(unActor:Actor)
+  mostrarDetalles(actor:Actor)
   {
-    console.info("mostrar detalles",unActor);
-    this.actorSeleccionado.emit(unActor);
+    console.info("mostrar detalles",actor);
+    this.actorSeleccionado.emit(actor);
+  } 
+
+  onCheckboxChange(e: any) {
+    const checkArray: FormArray = this.form.get('checkArray') as FormArray;
+    if (e.target.checked) {
+      checkArray.push(new FormControl(e.target.value));
+    } else {
+      let i: number = 0;
+      checkArray.controls.forEach((item: any) => {
+        if (item.value == e.target.value) {
+          checkArray.removeAt(i);
+          return;
+        }
+        i++;
+      });
+    }
+    console.log(checkArray.value);
+    this.actoresSeleccionados.emit(checkArray.value);
+
   }
 
 }

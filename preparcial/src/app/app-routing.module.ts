@@ -10,13 +10,12 @@ import { ActorListadoComponent } from './componentes/actor-listado/actor-listado
 import { PeliculaListadoComponent } from './componentes/pelicula-listado/pelicula-listado.component';
 import { TablaPaisesComponent } from './componentes/tabla-paises/tabla-paises.component';
 import { BanderasComponent } from './componentes/banderas/banderas.component';
+import { ActorPeliculaComponent } from './componentes/actor-pelicula/actor-pelicula.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'busqueda', pathMatch: 'full' },
-  // { path: 'tabla-pelicula', component: TablaPeliculaComponent },
-  // { path: 'pelicula-alta', component: PeliculaAltaComponent },
-  // { path: 'editEmpleado/:id', component: CreateEmpleadoComponent },
-  // { path: '**', redirectTo: 'busqueda', pathMatch: 'full' },
+ { path: 'actor/update', component: ActorPeliculaComponent },
+
   { path: "busqueda", component: BusquedaComponent, pathMatch: "full" },
 { path: "bienvenido", component: BienvenidoComponent, pathMatch: "full" },
 { path: "peliculas/alta", component: PeliculaAltaComponent, pathMatch: "full" },

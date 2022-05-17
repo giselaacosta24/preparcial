@@ -7,19 +7,26 @@ export class Actor {
  */
 
 
-    public id:number;
+    public id:string;
     public nombre:string;
     public apellido:string;
       public pelicula:string;
       public pais:string;
+      public direccion:string;
+      public edad:number;
+
   
 
-    constructor(id:number=0,nombre:string ='',apellido:string='',pelicula:string='',pais:string='') {
+    constructor(id:string='',nombre:string ='',apellido:string='',pelicula:string='',pais:string='',direccion='',edad=0) {
         this.id=id;
         this.nombre=nombre;
         this.apellido= apellido;      
          this.pelicula=pelicula;
 
         this.pais=pais;
+        
+        this.direccion=direccion;
+        
+        this.edad=edad;
     }
 }

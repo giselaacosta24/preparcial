@@ -1,14 +1,19 @@
-<div *ngIf="!unActor || unActor.id ===0">
+<div *ngIf="!unActor || unActor.id ===''">
     <p> Seleccione un actor </p>
     <p> y se mostrara su informacion personal  </p>
 
 </div>
-<div *ngIf="unActor && unActor.id !==0">
+<div *ngIf="unActor && unActor.id !==''">
   <div class="card" style="width:200px">
     <div class="card-body">
-      <h4 class="card-title">{{unActor.pais}}</h4>
-
-      <a href="#" class="btn btn-danger">Modificar</a>
+      <h4>Pais: </h4>
+      <p class="card-title">{{unActor.pais}}</p>
+      <div *ngFor="let pais of listaPaises ">
+        <div *ngIf="unActor.pais === pais.name">
+          <img [src]="pais.flag" alt="" width="60px" height="60px">
+         
+        </div>
+      </div>
     </div>
   </div>
 </div>

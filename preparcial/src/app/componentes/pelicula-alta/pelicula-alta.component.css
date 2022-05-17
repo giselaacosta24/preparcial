@@ -11,6 +11,10 @@
   .lh-condensed { line-height: 1.25; }
   
 
+  span{
+
+    color: red;
+  }
   /* #inputFile {
     display: none;
 }

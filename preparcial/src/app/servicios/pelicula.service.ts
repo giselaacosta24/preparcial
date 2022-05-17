@@ -9,6 +9,7 @@ export class PeliculaService {
   constructor(private firestore: AngularFirestore) { }
 
   agregarPelicula(pelicula: any): Promise<any> {
+    
     return this.firestore.collection('peliculasLista').add(pelicula);
   }
 

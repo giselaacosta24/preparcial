@@ -24,10 +24,6 @@ export class ActorListadoComponent implements OnInit {
   {
     this.unActor=NuevoActor;   
   }
-  mostrarPelicula(parametroActor:Actor)
-  {
-      console.info("pelicula",parametroActor);
-      this.ListadoActorPrincipal.push(parametroActor);
-  }
+
 
 }

@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Actor } from 'src/app/clases/actor';
+import { BanderasService } from 'src/app/servicios/banderas.service';
 
 @Component({
   selector: 'app-detalle-pais',
@@ -11,12 +12,22 @@ export class DetallePaisComponent implements OnInit {
  
   @Input()
   unActor: Actor | undefined;
-  constructor() { }
+   listaPaises:any=[]
+  @Output() paisSeleccionado = new EventEmitter<any>();
+  
+  constructor(private api:BanderasService) { 
 
-  ngOnInit(): void {
-    console.log('estoy aca');
-
-    console.log(this.unActor);
+    this.api.obtenerPaises() // retorna Observable  .subscribe
+    .subscribe((data:any)=>{ 
+      this.listaPaises=data
+      
+    })
   }
+  ngOnInit(): void {
 
+  }
+ 
+
+   
+  
 }

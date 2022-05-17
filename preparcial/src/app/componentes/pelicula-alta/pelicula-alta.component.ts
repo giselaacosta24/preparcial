@@ -1,6 +1,6 @@
 
-  import { Component, OnInit } from '@angular/core';
-  import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
+  import { Component, OnInit, Output } from '@angular/core';
+  import { FormBuilder, FormGroup, Validators,ReactiveFormsModule, FormArray, FormControl } from '@angular/forms';
   import { ActivatedRoute, Router } from '@angular/router';
   import { ToastrService } from 'ngx-toastr';
   import { PeliculaService } from 'src/app/servicios/pelicula.service';
@@ -10,6 +10,7 @@ import { Observable, retry } from 'rxjs';
 import { url } from 'inspector';
 import { Pelicula } from 'src/app/clases/pelicula';
 import { Actor } from 'src/app/clases/actor';
+import { ActorService } from 'src/app/servicios/actor.service';
 
 
 @Component({
@@ -28,7 +29,13 @@ rutafoto:string ="ruta";
 nuevaPelicula:Pelicula;
 progress: number = 0;
 newActor:Actor;
+selectedItemsList = [];
+checkedIDs = [];
+@Output() actores: any[] = [];
+public inputs = [];
+error='';
 
+ @Output()ListadoActoresPrincipal: Actor[] = [];
 fileStatus = { status: '', requestType: '', percent: 0 };
 
   selectedOption: any;
@@ -42,7 +49,8 @@ fileStatus = { status: '', requestType: '', percent: 0 };
   ];
 
 
-  constructor(private fb: FormBuilder,
+ 
+  constructor(private actorService: ActorService,private fb: FormBuilder,
     private peliculaService: PeliculaService,
     private router: Router,
     private toastr: ToastrService,
@@ -57,18 +65,18 @@ fileStatus = { status: '', requestType: '', percent: 0 };
       cantidadpublico: ['', Validators.required],
       fechadeestreno: ['', Validators.required],
       foto: ['', Validators.required],
-      nombreactor: ['', Validators.required]
+      // nombreactor: ['', Validators.required]
 
     })
     this.id = this.aRoute.snapshot.paramMap.get('id');
-    console.log(this.id);
+
 
   }
 
 
 
   ngOnInit() {
-    this.esEditar();
+    // this.esEditar();
     this.categoriasLista = [
       { data: 'Comedia', name: 'tipo' },
       { data: 'Ciencia Ficcion', name: 'tipo' },
@@ -78,13 +86,21 @@ fileStatus = { status: '', requestType: '', percent: 0 };
       { data: 'Terror', name: 'tipo' },
 
     ];
+
   }
 
-  agregarEditarPelicula() {
+  isValidField(field: string): string {
+    const validatedField = this.createPelicula.get(field);
+     return (!validatedField?.valid && validatedField?.touched)
+     ? 'is-invalid' : validatedField?.touched ? 'is-valid' : '';
+  }
+
+
+
+/*   agregarEditarPelicula() {
     this.submitted = true;
 
     if (this.createPelicula.invalid) {
-      console.log( 'aca:',this.createPelicula);
 
 
       return;
@@ -93,44 +109,41 @@ fileStatus = { status: '', requestType: '', percent: 0 };
     if (this.id === null) {
       this.agregarPelicula();
       console.log(this.createPelicula );
-// +    }
 
     }
-  }
+  } */
 
   agregarPelicula() {
-          console.log( 'actor:',this.newActor.nombre);
 
-  
-  console.log( this.rutafoto);
+    if (this.createPelicula.valid) {
+
+  console.log('actoresselec:',this.actores);
     const pelicula: any = {
       nombre: this.createPelicula.value.nombre,
       tipodecategoria: this.createPelicula.value.tipodecategoria,
       cantidadpublico: this.createPelicula.value.cantidadpublico,
       fechadeestreno: this.createPelicula.value.fechadeestreno,
       
-     // foto: this.createPelicula.value.foto,
       foto: this.nuevaPelicula.foto,
 
-      nombreactor:this.newActor.nombre
+      actores:this.actores
 
-      // fechaCreacion: new Date(),
-      // fechaActualizacion: new Date()
     }
-    // this.loading = true;
     this.peliculaService.agregarPelicula(pelicula).then(() => {
       this.toastr.success('La pelicula fue registrada con exito!', 'Pelicula Registrada', {
         positionClass: 'toast-bottom-right'
       });
-      // this.loading = false;
       this.router.navigate(['/busqueda']);
     }).catch(error => {
       console.log(error);
       this.loading = false;
     })
   }
+  else
+  this.error='error';
+  }
 
-
+/* 
   editarPelicula(id: string) {
 
     const pelicula: any = {
@@ -144,7 +157,6 @@ fileStatus = { status: '', requestType: '', percent: 0 };
       fechaActualizacion: new Date()
     }
 
-    // this.loading = true;
 
     this.peliculaService.actualizarPelicula(id, pelicula).then(() => {
       this.loading = false;
@@ -153,15 +165,13 @@ fileStatus = { status: '', requestType: '', percent: 0 };
       })
       this.router.navigate(['/busqueda']);
     })
-  }
+  } */
 
-
+/* 
   esEditar() {
     this.titulo = 'Editar Pelicula'
     if (this.id !== null) {
-      // this.loading = true;
       this.peliculaService.getPelicula(this.id).subscribe(data => {
-        // this.loading = false;
         this.createPelicula.setValue({
           nombre: data.payload.data()['nombre'],
           tipodecategoria: data.payload.data()['tipodecategoria'],
@@ -173,7 +183,7 @@ fileStatus = { status: '', requestType: '', percent: 0 };
         })
       })
     }
-  }
+  } */
 
   imagenes: any[] = [];
 
@@ -228,5 +238,11 @@ actualizarActor(actor:any){
     console.log(this.newActor);
 
 
+}
+
+tomarActoresParaDetalles(actoresmostrar:any)
+{
+  console.log(actoresmostrar);
+  this.actores=actoresmostrar;   
 }
 }
