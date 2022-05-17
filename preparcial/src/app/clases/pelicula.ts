@@ -1,6 +1,6 @@
 export class Pelicula {
 
-    public id: number;
+    public id: string;
       public nombre:string;
    public tipodecategoria:string;
   public fechadeestreno:string;
@@ -26,7 +26,7 @@ export class Pelicula {
 
 
 
-constructor(id:number=0,nombre:string ='',tipodecategoria:string='',fechadeestreno:string='',cantidadpublico:number=0,foto:string='',nombreactor:string ='') {
+constructor(id:string='',nombre:string ='',tipodecategoria:string='',fechadeestreno:string='',cantidadpublico:number=0,foto:string='',nombreactor:string ='') {
      this.id=id;
     this.nombre=nombre;
     this.tipodecategoria= tipodecategoria;      

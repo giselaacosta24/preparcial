@@ -1,0 +1,130 @@
+<div *ngIf="!unaPelicula || unaPelicula.id ===''">
+    <p> Seleccione un actor </p>
+    <p> y se mostrara su informacion personal  </p>
+ 
+ </div>
+ <div *ngIf="unaPelicula && unaPelicula.id !==''">
+ 
+ 
+  <div class="container">
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="../../../assets/altapelicula.jpg" alt="" width="200" height="200">
+      <h2>Edicion de pelicula</h2>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 order-md-2 mb-4">
+
+        <app-tabla-actores [listadoActores]="ListadoActoresPrincipal" (actoresSeleccionados)="tomarActoresParaDetalles($event)"  ></app-tabla-actores>  
+      </div>
+      <div class="col-md-8 order-md-1">
+        <h4 class="mb-3">Datos de Pelicula</h4>
+        <span *ngIf="submitted && createPelicula.invalid" class="badge badge-danger">TODOS LOS CAMPOS SON OBLIGATORIOS</span>
+
+        <form  [formGroup]="createPelicula"  (ngSubmit)="editarPelicula(unaPelicula.id)" class="needs-validation" novalidate>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="firstName">Nombre de pelicula:</label>
+              <input type="text" class="form-control" id="nombre"   [(ngModel)]="unaPelicula.nombre" placeholder="Ingrese nombre" formControlName="nombre" [class]="isValidField('nombre')">
+              <div class="invalid-feedback">
+               
+                <span *ngIf="createPelicula.get('nombre')?.errors?.['required']">
+                El nombre de la pelicula no puede quedar vacio.
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+          
+            <label for="lastName">Elige tipo de pelicula</label>
+
+        
+
+              <select formControlName="tipodecategoria"
+      
+     
+      name="tipo"
+      class="select-text">
+       <option class="dropdown-item" disabled selected value="elija categoria">Seleccione</option>
+       <option 
+        *ngFor="let tipo of categoriasLista;let x = index"
+        [ngValue]="tipo.data"
+       class="dropdown-item"  [(ngModel)]="unaPelicula.tipodecategoria" >{{tipo.data}}</option>
+    </select>
+          </div>
+  
+        </div>
+
+
+
+
+
+          <div class="mb-3">
+            <label for="address">Cantidad de publico</label>
+            <input type="number" class="form-control" id="address"  [(ngModel)]="unaPelicula.cantidadpublico" formControlName="cantidadpublico" placeholder="" [class]="isValidField('cantidadpublico')">
+            <div class="invalid-feedback">
+               
+              <span *ngIf="createPelicula.get('cantidadpublico')?.errors?.['required']">
+              La cantidad de publico de la pelicula no puede quedar vacio.
+              </span>
+            </div>
+          </div>
+
+
+
+     
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label for="cc-expiration">Fecha</label>
+              <input type="date" class="form-control" [(ngModel)]="unaPelicula.fechadeestreno"  formControlName="fechadeestreno" placeholder=""  [class]="isValidField('fechadeestreno')">
+              <span *ngIf="createPelicula.get('fechadeestreno')?.errors?.['required']">
+               La fecha de estreno no puede quedar vacia.
+                </span>
+            </div>
+         
+          </div>
+   
+
+             <div *ngIf="loading == true" class="spinner-border float-right" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label for="cc-expiration">Foto</label>
+       
+              <input type="file" accept=".png, .jpg,.jpeg" [(ngModel)]="unaPelicula.foto" formControlName="foto" (change)="cargarImagen($event)"   [class]="isValidField('foto')" multiple id="inputFile"> 
+              <span *ngIf="createPelicula.get('foto')?.errors?.['required']">
+                Seleccione una imagen
+                 </span>
+
+          </div>       
+              </div>              
+              
+              <img src="../../../assets/imagenes/subir.png" alt="" width="40" height="40" alt="upload file" >
+                
+
+                   
+          <hr class="mb-4">
+
+          <span *ngIf="error !== ''">
+
+            Complete todos los campos
+       
+             </span>
+          <button type="text" class="btn btn-secondary btn-lg mr-3"
+          routerLink="/busqueda">Volver</button>
+          <button type="submit" class="btn btn-dark btn-lg" *ngIf="loading == false">Agregar Pelicula</button>
+          <button  class="btn btn-primary" type="button" *ngIf="loading == true"  disabled>
+            Cargando foto...
+          </button>
+        </form>
+      </div>    
+
+    </div>
+ 
+  </div>
+
+</div>
+
+
+
+

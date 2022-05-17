@@ -1,12 +1,12 @@
 
 
-  <div *ngIf="!unaPelicula || unaPelicula.id ===0">
+  <div *ngIf="!unaPelicula || unaPelicula.id ===''">
     <p> Seleccione una pelicula </p>
     <p> y se mostrara su detalle  </p>
     <p> aqui  </p>
 
 </div>
-<div *ngIf="unaPelicula && unaPelicula.id !==0">
+<div *ngIf="unaPelicula && unaPelicula.id !==''">
   <div class="card" style="width:200px">
     <img class="card-img-top" src="{{unaPelicula.foto}}" alt="Card image" style="width:70%">
     <div class="card-body">
@@ -14,7 +14,6 @@
       <p class="card-text">La pelicula tuvo {{unaPelicula.cantidadpublico}} de espectadores en total cuando estuvo en cartelera</p>
       <p class="card-text">Su fecha de estreno fue en : {{unaPelicula.fechadeestreno}}</p>
 
-      <a href="#" class="btn btn-danger">Modificar</a>
     </div>
   </div>
 </div>
