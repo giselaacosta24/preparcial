@@ -1,12 +1,12 @@
 export const environment = {
   production: true,
   firebaseConfig : {
-   apiKey: "AIzaSyCqHTgqTTxU5gDVteDYM6Ex0ei6l7kSbLo",
-  authDomain: "giselaacostalaboratorio4.firebaseapp.com",
-  projectId: "giselaacostalaboratorio4",
-  storageBucket: "giselaacostalaboratorio4.appspot.com",
-  messagingSenderId: "2591034431",
-  appId: "1:2591034431:web:bdcff257950d897815bc8a",
-  measurementId: "G-5S24S2VLN7"
+    apiKey: "AIzaSyBUYubq5Qpf3zGHN-QhAlDe9AiRvxueAeY",
+    authDomain: "giselaacostalab4.firebaseapp.com",
+    projectId: "giselaacostalab4",
+    storageBucket: "giselaacostalab4.appspot.com",
+    messagingSenderId: "778734632905",
+    appId: "1:778734632905:web:ab282d3d3a836f0ca9f218",
+    measurementId: "G-GNT4V9VLD1"
   }
 };
